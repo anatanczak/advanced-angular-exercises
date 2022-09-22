@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { UnicornsService } from './../../shared/services/unicorns.service';
 
 @Component({
   selector: 'app-unicorn-list',
   templateUrl: './unicorn-list.component.html',
-  styleUrls: ['./unicorn-list.component.scss']
+  styleUrls: ['./unicorn-list.component.scss'],
 })
-export class UnicornListComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class UnicornListComponent {
+  public unicorns$ = this.unicornService.getAllWithCapacititesLabels();
+  constructor(private unicornService: UnicornsService) {}
 }

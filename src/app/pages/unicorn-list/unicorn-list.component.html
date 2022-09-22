@@ -1,1 +1,3 @@
-<p>unicorn-list works!</p>
+<div class="card-container">
+  <app-unicorn-card *ngFor="let unicorn of unicorns$ | async" [unicorn]="unicorn"></app-unicorn-card>
+</div>
