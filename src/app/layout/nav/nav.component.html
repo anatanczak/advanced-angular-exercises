@@ -19,7 +19,7 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <div class="cart">
-        <p class="cart-text">{{ itemsNumber }}</p>
+        <p class="cart-text">{{ (itemsNumber$ | async)?.length }}</p>
         <mat-icon class="cart-icon">favorite</mat-icon>
       </div>
     </mat-toolbar>

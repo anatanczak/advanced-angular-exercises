@@ -6,14 +6,13 @@ import { UnicornWithCapacities } from './../models/unicorn.model';
   providedIn: 'root',
 })
 export class CartService {
-  public cartItems = new BehaviorSubject<Array<UnicornWithCapacities>>([]);
+  private _cartItems = new BehaviorSubject<Array<UnicornWithCapacities>>([]);
+  public cartItems = this._cartItems.asObservable();
   constructor() {}
 
   public addUnicortToCart(unicorn: UnicornWithCapacities) {
-    if (unicorn.id && !this.cartItems.getValue().find(existingUnicorn => existingUnicorn.id === unicorn.id)) {
-      const unicorns = [...this.cartItems.getValue()];
-      unicorns.push(unicorn);
-      this.cartItems.next(unicorns);
+    if (unicorn.id && !this._cartItems.getValue().find(existingUnicorn => existingUnicorn.id === unicorn.id)) {
+      this._cartItems.next([...this._cartItems.getValue(), unicorn]);
     }
   }
 }

@@ -10,15 +10,11 @@ import { CartService } from './../../shared/services/cart.service';
   styleUrls: ['./nav.component.scss'],
 })
 export class NavComponent {
-  public itemsNumber = 0;
+  public itemsNumber$ = this.cartService.cartItems;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(result => result.matches),
     shareReplay()
   );
 
-  constructor(private breakpointObserver: BreakpointObserver, private cartService: CartService) {
-    this.cartService.cartItems.subscribe(value => {
-      this.itemsNumber = value.length;
-    });
-  }
+  constructor(private breakpointObserver: BreakpointObserver, private cartService: CartService) {}
 }
