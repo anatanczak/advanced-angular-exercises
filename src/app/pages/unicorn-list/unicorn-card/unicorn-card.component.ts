@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { UnicornWithCapacities } from './../../../shared/models/unicorn.model';
+import { CartService } from './../../../shared/services/cart.service';
 
 @Component({
   selector: 'app-unicorn-card',
@@ -8,6 +9,8 @@ import { UnicornWithCapacities } from './../../../shared/models/unicorn.model';
 })
 export class UnicornCardComponent {
   @Input() unicorn!: UnicornWithCapacities;
-  constructor() {}
-  public addToCart() {}
+  constructor(private cartService: CartService) {}
+  public addToCart() {
+    this.cartService.addUnicortToCart(this.unicorn);
+  }
 }

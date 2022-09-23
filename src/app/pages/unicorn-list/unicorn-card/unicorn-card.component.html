@@ -5,7 +5,7 @@
   </mat-card-header>
   <img matCardImage src="{{ unicorn.photo }}" />
   <mat-card-content> {{ unicorn.hobbies }} </mat-card-content>
-  <mat-card-actions align="start">
-    <button mat-button (click)="(addToCart)">Add to cart</button>
+  <mat-card-actions align="end">
+    <button mat-button (click)="addToCart()"><mat-icon class="heart">favorite</mat-icon></button>
   </mat-card-actions>
 </mat-card>
