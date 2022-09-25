@@ -15,6 +15,8 @@ import { NavComponent } from './layout/nav/nav.component';
 import { UnicornDetailComponent } from './pages/unicorn-detail/unicorn-detail.component';
 import { UnicornCardComponent } from './pages/unicorn-list/unicorn-card/unicorn-card.component';
 import { UnicornListComponent } from './pages/unicorn-list/unicorn-list.component';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 @NgModule({
   declarations: [AppComponent, NavComponent, UnicornDetailComponent, UnicornListComponent, UnicornCardComponent],
   imports: [
@@ -29,6 +31,8 @@ import { UnicornListComponent } from './pages/unicorn-list/unicorn-list.componen
     MatIconModule,
     MatListModule,
     MatCardModule,
+    StoreModule.forRoot({}, {}),
+    EffectsModule.forRoot([]),
   ],
   providers: [],
   bootstrap: [AppComponent],
