@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { concatAll, filter, forkJoin, map, Observable, tap, toArray } from 'rxjs';
+import { concatAll, delay, filter, forkJoin, map, Observable, tap, toArray } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Capacity } from './../models/capacity.model';
 import { Unicorn, UnicornWithCapacities } from './../models/unicorn.model';
@@ -14,6 +14,10 @@ export class UnicornsService {
 
   public getAll(): Observable<Unicorn[]> {
     return this._http.get<Unicorn[]>(`${environment.apiUrl}/unicorns`);
+  }
+
+  public get(id: number): Observable<Unicorn> {
+    return this._http.get<Unicorn>(`${environment.apiUrl}/unicorns/${id}`).pipe(delay(Math.random() * 1000));
   }
 
   public getSuperUnicorns(): Observable<Unicorn[]> {
@@ -44,5 +48,15 @@ export class UnicornsService {
         return newUnicorns;
       })
     );
+  }
+
+  public delete(unicorn: Unicorn): Observable<void> {
+    return this._http.delete<void>(`${environment.apiUrl}/unicorns/${unicorn.id}`).pipe(delay(Math.random() * 1000));
+  }
+
+  public update(unicorn: UnicornWithCapacities): Observable<Unicorn> {
+    const unicornToUpdate: Unicorn = { ...unicorn, capacities: unicorn.capacities.map(c => c.id) };
+
+    return this._http.put<Unicorn>(`${environment.apiUrl}/unicorns/${unicorn.id}`, unicornToUpdate).pipe(delay(Math.random() * 1000));
   }
 }
